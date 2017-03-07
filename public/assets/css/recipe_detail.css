@@ -1,0 +1,210 @@
+@charset 'utf-8';
+
+#wrapper .contentIn {
+	padding: 25px 0;
+}
+video {
+	width: 100%;
+	margin-bottom: 40px;
+}
+article {
+	width: 68.75%;
+	padding: 0 20px;
+	float: left;
+}
+
+article section {
+	padding: 16px 0;
+	border-bottom: solid 1px #aaa;
+}
+article section .ttl03 {
+	margin-bottom: 8px;
+}
+.ttl03 span {
+	margin-left: 16px;
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+	video {
+		margin-bottom: 10px;
+	}
+	article {
+		width: 100%;
+		padding: 0 15px;
+		float: none;
+	}
+	article section {
+		padding: 8px 0;
+	}
+	.ttl03 span {
+		margin-left: 8px;
+		font-size: 12px;
+	}
+
+}
+
+
+.clipInfo {
+	padding: 0;
+}
+.ttl02 span {
+	font-size: 12px;
+	font-weight: normal;
+}
+.ttl02 .count:before {
+	content: '...';
+}
+.user {
+	margin-bottom: 16px;
+	letter-spacing: -.4em;
+}
+
+.userIcon {
+	display: inline-block;
+	width: 40px;
+	vertical-align: middle;
+	border-radius: 20px;
+	border: solid 1px #aaa;
+	overflow: hidden;
+}
+.userName {
+	display: inline-block;
+	margin-left: 16px;
+	font-size: 16px;
+	letter-spacing: normal;
+}
+
+.favoArea {
+	margin: 4px 0 0;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.favoArea a {
+	display: block;
+	width: 45px;
+	height: 32px;
+	padding-left: 40px;
+	text-align: left;
+	line-height: 32px;
+	background: url(../img/favo_off.png) no-repeat;
+}
+.favoArea a.on {
+	background: url(../img/favo_on.png) no-repeat;
+}
+.tagList {
+	margin-bottom: 8px;
+	clear: both;
+}
+.tagList li {
+	margin: 0 8px 8px 0;
+}
+
+@media only screen and (max-width: 768px) {
+	.user {
+		margin-bottom: 16px;
+		letter-spacing: -.4em;
+		float: left;
+	}
+	.userIcon {
+		width: 30px;
+		border-radius: 15px;
+	}
+	.userName {
+		margin-left: 10px;
+		font-size: 12px;
+	}
+
+	.favoArea {
+		margin: 0;
+		float: right;
+	}
+	.tagList {
+		margin-bottom: 4px;
+	}
+}
+
+.ingredient table {
+	margin-bottom: 
+}
+.ingredient tr:nth-of-type(odd) {
+	background-color: #eee;
+}
+.ingredient th,
+.ingredient td {
+	padding: 8px;
+	word-break: break-word;
+	vertical-align: middle;
+}
+.ingredient th {
+	width: 460px;
+	font-weight: normal;
+	text-align: left;
+}
+.ingredient td {
+	width: 160px;
+	text-align: right;
+}
+
+section.comment {
+	margin-bottom: 80px;
+}
+.commentList {
+	margin-bottom: 24px;
+}
+.commentList li:first-child {
+	border-top: dashed 1px #aaa;
+}
+.commentList li {
+	padding: 8px 0;
+	border-bottom: dashed 1px #aaa;
+}
+.commentList li .userIcon {
+	width: 28px;
+	height: 28px;
+	border-radius: 15px;
+}
+.commentList li .userName {
+	margin-left: 8px;
+	font-size: 12px;
+}
+.commentList li a {
+	float: left;
+}
+.commentList li .date {
+	margin-left: 16px;
+	color: #aaa;
+	font-size: 12px;
+	line-height: 26px;
+	float: left;
+}
+.commentList li .comment {
+	margin-left: 40px;
+	clear: left;
+}
+.review textarea {
+	width: 79%;
+	height: 50px;
+	float: left;
+}
+.review .postReview {
+	display: block;
+	width: 13%;
+	margin: 16px 0 0 5%;
+	padding: 4px 0;
+	color: #fff;
+	text-align: center;
+	border-radius: 3px;
+	background-color: #f78f82;
+	float: left;
+}
+
+
+@media only screen and (max-width: 768px) {
+	
+}
+
+
+

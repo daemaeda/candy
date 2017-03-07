@@ -1,0 +1,126 @@
+{% extends 'master.twig' %}
+
+{% block body %}
+	<div id="breadcrumb">
+		<div class="contentIn">
+			<ul>
+				<li><a href="{{ siteUrl('/') }}">TOP</a></li>
+				<li>{{ recipe.title }}</li>
+			</ul>
+		</div>
+	</div>
+	<div id="wrapper">
+
+		<div class="contentIn">
+			<video controls autoplay>
+				<source src="/candy/public/video/{{ recipe.member_id }}/{{ recipe.clip }}">
+				<p>動画を再生するには、videoタグをサポートしたブラウザが必要です。</p>
+			</video>
+			<article>
+				<section class="clipInfo">
+					<h2 class="ttl02">{{ recipe.title }}
+						<span class="count">{{ recipe.view }}</span><span>views</span></h2>
+					<div class="user fL">
+						<a href="">
+							<span class="userIcon"><img src="/candy/public/assets/img/{{ recipe.member().getResults().img_url }}" alt=""></span>
+							<span class="userName">{{recipe.member().getResults().name }}
+							</span>
+						</a>
+					</div>
+					<div class="favoArea fR">
+						<a data-member-id="{{ userId }}" data-recipe-id="{{ recipe.id }}"
+						   class="toggleFavorite {% if favorite %}on{% endif %}" href="#">{{ recipe.love|default("0") }}
+						</a>
+					</div>
+					<div class="tagList">
+						<ul>
+							{% for tag in tags %}
+							<li><a href="{{ siteUrl('recipe') }}?tagId={{ tag.tag().getResults().id }}">{{ tag.tag().getResults().name }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</section>
+				<section class="description">
+					<h2 class="ttl03">説明</h2>
+					<p>{{ recipe.explain|nl2br }}</p>
+				</section>
+				<section class="ingredient">
+					<h2 class="ttl03">材料<span>（{{ recipe.servings_for }}）</span></h2>
+					<table>
+						{{ ingredient in recipe.ingredients().getResults() }}
+						{% for ingredient in recipe.ingredients().getResults() %}
+						<tr>
+							<th class="content">{{ ingredient.name }}</th>
+							<td class="content">{{ ingredient.quantity }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</section>
+				<section class="point">
+					<h2 class="ttl03">コツ・ポイント</h2>
+					<p>{{ recipe.point|nl2br }}</p>
+				</section>
+				<section class="mistake">
+					<h2 class="ttl03">失敗談</h2>
+					<p>{{ recipe.mistake|nl2br }}</p>
+				</section>
+				<section class="comment">
+					<h2 class="ttl03">感想や質問<span class="commentCount">({{ recipe.review().getResults().count }}件)</span></h2>
+					<div class="commentList">
+						<ul>
+							{% for review in recipe.review().getResults() %}
+							<li>
+								<a href="{{ siteUrl('user') }}/{{ review.member_id }}">
+									<div class="userIcon"><img src="/candy/public/assets/img/{{recipe.member().getResults().img_url}}" alt=""></div>
+									<span class="userName">{{ review.member().getResults().name }}</span>
+								</a>
+								<p class="date">{{ review.created_at|date('Y年m月d日 H:i') }}</p>
+								<p class="comment">
+									{{ review.comment }}
+								</p>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="review">
+						<textarea name="comment" id="reviewComment">おいしかったです〜</textarea>
+						<a data-member-id="{{ userId }}" data-recipe-id="{{ recipe.id }}" data-member-name="{{ userName }}"
+						   class="postReview" href="#">
+						   <span>投稿</span>
+						</a>
+					</div>
+				</section>
+			</article>
+			<aside class="related">
+				<h2 class="ttl01">この動画に関連する動画<span>Related Clip</span></h2>
+				<ul class="clipList related">
+					{% for video in relatedVideos %}
+					<li>
+						<div class="thumb">
+							<a href="{{ siteUrl('recipe') }}/{{ video.id }}">
+								<img src="/candy/public/thumb/{{ video.member_id }}/{{ video.thumb }}" alt="">
+								<div class="status">
+									<span class="favo">♡{{ video.love }}</span>
+									<span class="time">2:10</span>
+								</div>
+							</a>
+						</div>
+						<div class="clipInfo">
+							<div class="clipTitle"><a href="{{ siteUrl('recipe') }}/{{ video.id }}">{{ video.title }}</a></div>
+							<div class="userName">
+								<a href="{{ siteUrl('recipe') }}/{{ recipe.id }}"><span>{{recipe.member().getResults().name }}</span></a>
+							</div>
+							{% set tags = video.tag|split(',') %}
+							<ul class="tagList">
+								{% for tag in tags %}
+								<li><a href="">{{ tag }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</aside>
+		</div>
+	</div>
+{% endblock %}

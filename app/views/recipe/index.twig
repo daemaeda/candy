@@ -1,0 +1,44 @@
+{% extends 'master.twig' %}
+
+{% block body %}
+    {% include 'include/searchForm.twig' %}
+    <div id="wrapper">
+        <div class="contentIn">
+            <article>
+                <section>
+                    <h2 class="ttl01">検索結果<span>{{ inputKeyword }} {{ categoryName|first.name }} {{ sceneName|first.name }}</span></h2>
+                    <ul class="clipList hot">
+                        {% for recipe in recipes %}
+                            <li>
+                                <div class="thumb">
+                                    <a href="{{ siteUrl('recipe') }}/{{ recipe.id }}">
+                                        <img src="/candy/public/thumb/{{ recipe.member_id }}/{{ recipe.thumb }}" alt="">
+                                        <div class="status">
+											<span class="favo">♡{{ recipe.love }}</span>
+                                            <span class="time">2:10</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="clipInfo">
+                                    <div class="clipTitle"><a
+                                                href="{{ siteUrl('recipe') }}/{{ recipe.id }}">{{ recipe.title }}</a>
+                                    </div>
+                                    <div class="userName">
+                                        <a href="{{ siteUrl('recipe') }}/{{ recipe.id }}"><span>{{ recipe.member_name }}</span></a>
+                                    </div>
+                                    {% set tagNames = recipe.tag_name|split(',') %}
+                                    {% set tagId = recipe.tag_id|split(',') %}
+                                    <ul class="tagList">
+                                        {% for i,tag in tagNames %}
+                                            <li><a href="{{ siteUrl('recipe') }}?tagId={{ tagId[i] }}">{{ tag }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </div>
+{% endblock %}
