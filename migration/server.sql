@@ -1,16 +1,47 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 2017 年 3 月 07 日 22:40
+-- サーバのバージョン： 10.1.19-MariaDB
+-- PHP Version: 5.6.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `candy`
+--
+
+-- --------------------------------------------------------
+
+
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `member`
+--
 
 CREATE TABLE `member` (
-	`id` int(10) UNSIGNED NOT NULL,
-	`name` varchar(30) NOT NULL,
-	`img_url` text,
-	`mail` varchar(255) NOT NULL,
-	`login_id` varchar(30) NOT NULL,
-	`password` varchar(30) NOT NULL,
-	`pos_code` char(7) DEFAULT NULL,
-	`address` text,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `img_url` text,
+  `mail` varchar(255) NOT NULL,
+  `login_id` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `pos_code` char(7) DEFAULT NULL,
+  `address` text,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -23,36 +54,30 @@ INSERT INTO `member` (`id`, `name`, `img_url`, `mail`, `login_id`, `password`, `
 (3, 'イセン', 'c_pink.png', 'test3@exp.com', '3', 'pas', NULL, NULL, '2016-12-28 02:57:22', '2017-02-02 11:30:07', NULL),
 (4, 'ゆみこ', 'c_purple.png', 'test4@exp.com', '4', 'pas', NULL, NULL, '2016-12-28 02:58:17', '2017-02-02 11:30:18', NULL);
 
-CREATE TABLE `member_favorite_recipe` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`member_id` int(10) UNSIGNED NOT NULL,
-	`recipe_id` bigint(20) UNSIGNED NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `member_favorite_recipe` (`id`, `member_id`, `recipe_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(74, 1, 51, '2017-02-02 11:34:30', '2017-02-02 11:34:30', NULL);
 
 
--- DROP TABLE IF EXISTS `tag`; `recipe`;
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `recipe`
+--
+
 CREATE TABLE `recipe` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`title` varchar(30) NOT NULL,
-	`clip` text,
-	`servings_for` varchar(30) NOT NULL,
-	`thumb` text,
-	`explain` text NOT NULL,
-	`point` text NOT NULL,
-	`mistake` text NOT NULL,
-	`view` bigint(20) UNSIGNED DEFAULT '0',
-	`love` bigint(20) UNSIGNED DEFAULT '0',
-	`video_time` time DEFAULT NULL,
-	`member_id` int(10) UNSIGNED NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(30) NOT NULL,
+  `clip` text,
+  `servings_for` varchar(30) NOT NULL,
+  `thumb` text,
+  `explain` text NOT NULL,
+  `point` text NOT NULL,
+  `mistake` text NOT NULL,
+  `view` bigint(20) UNSIGNED DEFAULT '0',
+  `love` bigint(20) UNSIGNED DEFAULT '0',
+  `video_time` time DEFAULT NULL,
+  `member_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -75,8 +100,8 @@ INSERT INTO `recipe` (`id`, `title`, `clip`, `servings_for`, `thumb`, `explain`,
 (47, 'フワッとチョコバナナケーキ', '12_1486033341.mp4', '２人前', '12_1486033341.jpg', '焼きたてはフワフワでチョコがトロトロ、バナナの風味が広がります', '今回はパウンドケーキの型にしましたが、ハート型やカップケーキ型ならバレンタインにぴったりです。', '', 6, 0, NULL, 3, '2017-02-02 11:02:21', '2017-02-02 11:37:20', NULL),
 (48, '一歳 食パンで簡単お誕生日ケーキ♡', '13_1486033516.mp4', '1人前', '13_1486033516.jpg', '食パンとヨーグルトだけど、見た目はショートケーキです♡', 'コツはありませんw\r\n重ねて可愛くして完成です♡', '', 2, 0, NULL, 3, '2017-02-02 11:05:16', '2017-02-02 11:14:04', NULL),
 (49, 'ふわさく紅茶のケーキ', '14_1486033666.mp4', '1人分', '14_1486033666.jpg', '紅茶の素敵な香りに囲まれながら楽しくお菓子作り！', 'コツは特にありません！香りに癒されながら、楽しく作ってください！', 'やらかしました。', 5, 0, NULL, 3, '2017-02-02 11:07:46', '2017-02-02 11:14:19', NULL),
-(50, 'サクホロ★ココアアイスボックスクッキー', '15_1486034290.mp4', '約５０枚・天板２枚分', '15_1486034290.jpg', 'フードプロセッサーで生地作りするので簡単！サクっとホロッと食感の楽しいクッキーです。バレンタインやホワイトデーに♪', '●バターは使う直前まで冷凍庫でしっかり冷やしておきます。\r\n●卵黄を加えたら少しずつちゃんと生地がまとまってくるので、なかなかまとまらないからと言って水分などを足さないように！\r\n●余った卵白は料理に使ったり、冷凍してシフォンケーキ等に使って。', '', 3, 0, NULL, 1, '2017-02-02 11:18:10', '2017-02-02 11:36:11', NULL),
-(51, '簡単☆シンプルベイクドチーズケーキ', '16_1486034559.mp4', '4人分', '16_1486034559.jpg', 'シンプルなベイクドチーズケーキ。\r\n程よい甘さで簡単チーズケーキです( ´﹀` )', '✿下準備をしっかりとしておきましょう。\r\n✿メレンゲは絶対に潰さないようにしてください！\r\n✿メレンゲを作るボウルや泡立て器等は全て水気を完全になくしてから作るようにしてください！でないと、泡立たなくなります(´･ω･`)', '', 13, 1, NULL, 1, '2017-02-02 11:22:39', '2017-02-02 11:35:07', NULL);
+(50, 'サクホロ★ココアアイスボックスクッキー', '15_1486034290.mp4', '約５０枚・天板２枚分', '15_1486034290.jpg', 'フードプロセッサーで生地作りするので簡単！サクっとホロッと食感の楽しいクッキーです。バレンタインやホワイトデーに♪', '●バターは使う直前まで冷凍庫でしっかり冷やしておきます。\r\n●卵黄を加えたら少しずつちゃんと生地がまとまってくるので、なかなかまとまらないからと言って水分などを足さないように！\r\n●余った卵白は料理に使ったり、冷凍してシフォンケーキ等に使って。', '', 9, 0, NULL, 1, '2017-02-02 11:18:10', '2017-03-07 08:59:36', NULL),
+(51, '簡単☆シンプルベイクドチーズケーキ', '16_1486034559.mp4', '4人分', '16_1486034559.jpg', 'シンプルなベイクドチーズケーキ。\r\n程よい甘さで簡単チーズケーキです( ´﹀` )', '✿下準備をしっかりとしておきましょう。\r\n✿メレンゲは絶対に潰さないようにしてください！\r\n✿メレンゲを作るボウルや泡立て器等は全て水気を完全になくしてから作るようにしてください！でないと、泡立たなくなります(´･ω･`)', '', 20, 1, NULL, 1, '2017-02-02 11:22:39', '2017-03-07 13:18:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -84,16 +109,15 @@ INSERT INTO `recipe` (`id`, `title`, `clip`, `servings_for`, `thumb`, `explain`,
 -- テーブルの構造 `review`
 --
 
--- DROP TABLE IF EXISTS `tag`; `review`;
 CREATE TABLE `review` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`recipe_id` bigint(20) UNSIGNED NOT NULL,
-	`reply_id` int(10) UNSIGNED DEFAULT NULL,
-	`comment` text NOT NULL,
-	`member_id` int(10) UNSIGNED NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `reply_id` int(10) UNSIGNED DEFAULT NULL,
+  `comment` text NOT NULL,
+  `member_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -110,16 +134,15 @@ INSERT INTO `review` (`id`, `recipe_id`, `reply_id`, `comment`, `member_id`, `cr
 -- テーブルの構造 `step`
 --
 
--- DROP TABLE IF EXISTS `tag`; `step`;
 CREATE TABLE `step` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`recipe_id` bigint(20) UNSIGNED NOT NULL,
-	`step_no` int(10) UNSIGNED NOT NULL,
-	`description` text NOT NULL,
-	`img_url` text,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `step_no` int(10) UNSIGNED NOT NULL,
+  `description` text NOT NULL,
+  `img_url` text,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -128,14 +151,13 @@ CREATE TABLE `step` (
 -- テーブルの構造 `tag`
 --
 
--- DROP TABLE IF EXISTS `tag`; `tag`;
 CREATE TABLE `tag` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`name` varchar(30) NOT NULL,
-	`type` int(10) UNSIGNED NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `type` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -165,14 +187,13 @@ INSERT INTO `tag` (`id`, `name`, `type`, `created_at`, `updated_at`, `deleted_at
 -- テーブルの構造 `tag_recipe_relations`
 --
 
--- DROP TABLE IF EXISTS `tag`; `tag_recipe_relations`;
 CREATE TABLE `tag_recipe_relations` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`recipe_id` bigint(20) UNSIGNED NOT NULL,
-	`tag_id` bigint(20) UNSIGNED NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `tag_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -219,21 +240,19 @@ INSERT INTO `tag_recipe_relations` (`id`, `recipe_id`, `tag_id`, `created_at`, `
 (51, 51, 12, '2017-02-02 11:22:39', '2017-02-02 11:22:39', NULL),
 (52, 51, 15, '2017-02-02 11:22:39', '2017-02-02 11:22:39', NULL);
 
-
 --
 -- テーブルの構造 `ingredients`
 --
 
--- DROP TABLE IF EXISTS `tag`; `ingredients`;
 CREATE TABLE `ingredients` (
-	`id` bigint(20) UNSIGNED NOT NULL,
-	`recipe_id` bigint(20) UNSIGNED NOT NULL,
-	`ingredients_no` int(10) UNSIGNED NOT NULL,
-	`name` varchar(30) NOT NULL,
-	`quantity` varchar(30) NOT NULL,
-	`created_at` timestamp default CURRENT_TIMESTAMP,
-	`updated_at` timestamp,
-	`deleted_at` timestamp
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `ingredients_no` int(10) UNSIGNED NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `quantity` varchar(30) NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -326,6 +345,28 @@ INSERT INTO `ingredients` (`id`, `recipe_id`, `ingredients_no`, `name`, `quantit
 (208, 51, 7, '無塩バター', '30g', '2017-02-02 11:22:39', '2017-02-02 11:22:39', NULL),
 (209, 51, 8, 'バニラエッセンス', '2〜3滴', '2017-02-02 11:22:39', '2017-02-02 11:22:39', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `member_favorite_recipe`
+--
+
+CREATE TABLE `member_favorite_recipe` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `member_id` int(10) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp default CURRENT_TIMESTAMP,
+  `updated_at` timestamp,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `member_favorite_recipe`
+--
+
+INSERT INTO `member_favorite_recipe` (`id`, `member_id`, `recipe_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(74, 1, 51, '2017-02-02 11:34:30', '2017-02-02 11:34:30', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -401,7 +442,7 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `member_favorite_recipe`
 --
@@ -448,3 +489,8 @@ ALTER TABLE `ingredients`
 ALTER TABLE `member_favorite_recipe`
   ADD CONSTRAINT `member_favorite_recipe_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `member_favorite_recipe_ibfk_2` FOREIGN KEY (`recipe_id`) REFERENCES `recipe` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
