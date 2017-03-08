@@ -11,12 +11,15 @@ header {
 #header-nav li a {
 	color: #fff;
 }
+.fixed #header-nav li a {
+	color: #4d2d29;
+}
 #mainVisual {
 	margin-top: -66px;
 	position: relative;
 	background-color: rgba(0,0,0,0.6);
 }
-#mainVisual img {
+#mainVisual p img {
 	width: auto;
 	position: absolute;
 	z-index: 2;
@@ -32,7 +35,6 @@ header {
 	z-index: -1;
 }
 .clip-search {
-	margin-top: -8px;
 	position: relative;
 }
 
@@ -44,6 +46,21 @@ header {
 		position: absolute;
 	}
 	#mainVisual {
+		margin-top: 0;
+		position: static;
+		background: url(../img/bg02.jpg)no-repeat;
+		background-size: 100%;
+	}
+	#mainVisual p {
+		padding: 15% 0;
+		text-align: center;
+		background-color: rgba(0,0,0,0.6);
+	}
+	#mainVisual p img {
+		position: static;
+		width: 80%;
+	}
+	#mainVisual video {
 		display: none;
 	}
 }

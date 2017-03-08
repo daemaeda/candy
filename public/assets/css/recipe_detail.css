@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
 #wrapper .contentIn {
-	padding: 25px 0;
+	padding: 0;
 }
 video {
 	width: 100%;
@@ -41,9 +41,7 @@ article section .ttl03 {
 		margin-left: 8px;
 		font-size: 12px;
 	}
-
 }
-
 
 .clipInfo {
 	padding: 0;
@@ -126,9 +124,6 @@ article section .ttl03 {
 	}
 }
 
-.ingredient table {
-	margin-bottom: 
-}
 .ingredient tr:nth-of-type(odd) {
 	background-color: #eee;
 }
@@ -185,14 +180,15 @@ section.comment {
 	clear: left;
 }
 .review textarea {
-	width: 79%;
+	width: 80%;
 	height: 50px;
 	float: left;
+	box-sizing: border-box;
 }
 .review .postReview {
 	display: block;
-	width: 13%;
-	margin: 16px 0 0 5%;
+	width: 14%;
+	margin: 8px 0 0 6%;
 	padding: 4px 0;
 	color: #fff;
 	text-align: center;
@@ -201,9 +197,21 @@ section.comment {
 	float: left;
 }
 
-
 @media only screen and (max-width: 768px) {
-	
+	section.comment {
+		margin-bottom: 40px;
+	}
+	.review textarea {
+		width: 100%;
+		float: none;
+	}
+	.review .postReview {
+		display: block;
+		width: 100%;
+		margin: 10px 0 0;
+		padding: 4px 0;
+		float: none;
+	}
 }
 
 
