@@ -14,8 +14,18 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-SetEnv CANDY_HOST localhost
-SetEnv CANDY_NAME candy
-SetEnv CANDY_USER candy
-SetEnv CANDY_PASS candy
-SetEnv CANDY_DNS mysql:dbname=candy;host=localhost
+setEnv LOCAL_MODE true
+
+SetEnv LOCAL_HOST localhost
+SetEnv LOCAL_NAME candy
+SetEnv LOCAL_USER candy
+SetEnv LOCAL_PASS candy
+SetEnv LOCAL_DNS mysql:dbname=candy;host=localhost
+
+setEnv PRODUCTION_FFMPEG /usr/local/ffmpeg_build/bin/ffmpeg
+SetEnv PRODUCTION_HOST tk2-204-11685
+SetEnv PRODUCTION_NAME candy
+SetEnv PRODUCTION_USER candy
+SetEnv PRODUCTION_PASS candy
+SetEnv PRODUCTION_DNS mysql:dbname=candy;host=tk2-204-11685
+

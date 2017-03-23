@@ -11,7 +11,8 @@ define('PUBLIC_PATH', __DIR__.'/../../public/');
 define('CMD_PATH', __DIR__.'/../../app/cmd/');
 
 // CANDY用
-define('FFMPEG_APP_PATH', CMD_PATH.'ffmpeg');
+$ffmpeg = isset($_SERVER['LOCAL_MODE']) ? CMD_PATH."ffmpeg" : $_SERVER['PRODUCTION_FFMPEG'];
+define('FFMPEG_APP_PATH', $ffmpeg);
 define('THUMB_PATH', PUBLIC_PATH.'thumb/');
 define('VIDEO_PATH', PUBLIC_PATH.'video/');
 define('PAGING_THEMES_PATH', ROOT_PATH.'src/Candy/themes/default');
